@@ -17,17 +17,25 @@ public:
 	UGrabber();
 
 protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
+public:
+	// Methods
+	virtual void BeginPlay() override;
+	void SetAtachedInputComponent();
+	void FindPhysicsHandlerComponenet();
+	void Grab();
+	void Release();
+	const FHitResult GetFirstPhysicBodyInReach();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+//Variables
 	AActor * Owner;
 	APlayerController* OwnerController;
-
+	class UPhysicsHandleComponent* PhysicsHandleVariable = nullptr;
+	class UInputComponent* InputComponentVariable = nullptr;
 	UPROPERTY(EditAnywhere)
-		float Reach = 100.0;
+	float Reach = 150.0;
+
+	//Raycast and grab whats in front
 	
 };
